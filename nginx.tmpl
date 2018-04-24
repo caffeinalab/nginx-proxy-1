@@ -282,6 +282,7 @@ server {
 		fastcgi_pass {{ trim $upstream_name }};
 		{{ else }}
 		proxy_pass {{ trim $proto }}://{{ trim $upstream_name }};
+		http2_push_preload on;
 		{{ end }}
 
 		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
